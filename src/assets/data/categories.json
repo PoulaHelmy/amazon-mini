@@ -1,0 +1,8 @@
+[
+  { "id": "electronics",  "nameEn": "Electronics",  "nameAr": "إلكترونيات", "icon": "pi pi-desktop",       "color": "#6366f1", "count": 48 },
+  { "id": "fashion",      "nameEn": "Fashion",      "nameAr": "أزياء",      "icon": "pi pi-shopping-bag",  "color": "#ec4899", "count": 134 },
+  { "id": "home",         "nameEn": "Home & Garden", "nameAr": "المنزل",    "icon": "pi pi-home",          "color": "#f59e0b", "count": 76 },
+  { "id": "sports",       "nameEn": "Sports",       "nameAr": "رياضة",      "icon": "pi pi-bolt",          "color": "#10b981", "count": 59 },
+  { "id": "books",        "nameEn": "Books",        "nameAr": "كتب",        "icon": "pi pi-book",          "color": "#8b5cf6", "count": 212 },
+  { "id": "beauty",       "nameEn": "Beauty",       "nameAr": "جمال",       "icon": "pi pi-star",          "color": "#f43f5e", "count": 91 }
+]

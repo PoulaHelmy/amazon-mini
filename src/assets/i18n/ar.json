@@ -1,0 +1,57 @@
+{
+  "APP": {
+    "NAME": "سوقيفاي",
+    "TAGLINE": "تسوق بحرية، ادفع بثقة"
+  },
+  "NAV": {
+    "HOME": "الرئيسية",
+    "PRODUCTS": "المنتجات",
+    "CART": "السلة",
+    "WISHLIST": "المفضلة"
+  },
+  "HOME": {
+    "HERO_TITLE": "اكتشف أفضل العروض",
+    "HERO_SUBTITLE": "آلاف المنتجات بأسعار لا تُقاوَم",
+    "SHOP_NOW": "تسوق الآن",
+    "CATEGORIES_TITLE": "تسوق حسب الفئة",
+    "FEATURED_TITLE": "منتجات مميزة"
+  },
+  "PRODUCT": {
+    "ADD_TO_CART": "أضف للسلة",
+    "OUT_OF_STOCK": "نفدت الكمية",
+    "IN_STOCK": "متاح",
+    "LOADING": "جاري التحميل...",
+    "PRICE": "السعر",
+    "CATEGORY": "الفئة",
+    "RATING": "التقييم",
+    "REVIEWS": "مراجعة",
+    "VIEW_ALL": "عرض الكل",
+    "FILTER_BY": "تصفية حسب",
+    "SORT_BY": "ترتيب حسب",
+    "SORT_PRICE_ASC": "السعر: من الأقل للأعلى",
+    "SORT_PRICE_DESC": "السعر: من الأعلى للأقل",
+    "SORT_NEWEST": "الأحدث أولاً",
+    "SORT_POPULAR": "الأكثر مبيعاً",
+    "ALL_CATEGORIES": "كل الفئات",
+    "NO_PRODUCTS": "لا توجد منتجات"
+  },
+  "CART": {
+    "TITLE": "سلة التسوق",
+    "EMPTY": "سلتك فارغة",
+    "TOTAL": "الإجمالي",
+    "CHECKOUT": "إتمام الشراء",
+    "REMOVE": "إزالة",
+    "QUANTITY": "الكمية",
+    "ITEMS": "عناصر"
+  },
+  "COMMON": {
+    "LOADING": "جاري التحميل...",
+    "ERROR": "حدث خطأ",
+    "RETRY": "إعادة المحاولة",
+    "CLOSE": "إغلاق",
+    "SAVE": "حفظ",
+    "CANCEL": "إلغاء",
+    "CONFIRM": "تأكيد",
+    "SEARCH": "بحث"
+  }
+}

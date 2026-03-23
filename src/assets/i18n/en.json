@@ -1,0 +1,57 @@
+{
+  "APP": {
+    "NAME": "Souqify",
+    "TAGLINE": "Shop freely, pay with confidence"
+  },
+  "NAV": {
+    "HOME": "Home",
+    "PRODUCTS": "Products",
+    "CART": "Cart",
+    "WISHLIST": "Wishlist"
+  },
+  "HOME": {
+    "HERO_TITLE": "Discover the Best Deals",
+    "HERO_SUBTITLE": "Thousands of products at unbeatable prices",
+    "SHOP_NOW": "Shop Now",
+    "CATEGORIES_TITLE": "Shop by Category",
+    "FEATURED_TITLE": "Featured Products"
+  },
+  "PRODUCT": {
+    "ADD_TO_CART": "Add to Cart",
+    "OUT_OF_STOCK": "Out of Stock",
+    "IN_STOCK": "In Stock",
+    "LOADING": "Loading...",
+    "PRICE": "Price",
+    "CATEGORY": "Category",
+    "RATING": "Rating",
+    "REVIEWS": "reviews",
+    "VIEW_ALL": "View All",
+    "FILTER_BY": "Filter by",
+    "SORT_BY": "Sort by",
+    "SORT_PRICE_ASC": "Price: Low to High",
+    "SORT_PRICE_DESC": "Price: High to Low",
+    "SORT_NEWEST": "Newest First",
+    "SORT_POPULAR": "Best Selling",
+    "ALL_CATEGORIES": "All Categories",
+    "NO_PRODUCTS": "No products found"
+  },
+  "CART": {
+    "TITLE": "Shopping Cart",
+    "EMPTY": "Your cart is empty",
+    "TOTAL": "Total",
+    "CHECKOUT": "Checkout",
+    "REMOVE": "Remove",
+    "QUANTITY": "Qty",
+    "ITEMS": "items"
+  },
+  "COMMON": {
+    "LOADING": "Loading...",
+    "ERROR": "Something went wrong",
+    "RETRY": "Retry",
+    "CLOSE": "Close",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "CONFIRM": "Confirm",
+    "SEARCH": "Search"
+  }
+}
