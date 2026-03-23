@@ -28,7 +28,7 @@ export class PromoCodeComponent implements OnInit {
 
   // BUG 6: Memory leak — Subscription is never unsubscribed
   ngOnInit(): void {
-    this.Subscription = this.cartService.items.subscribe(() => {
+    this.Subscription = this.cartService.items$.subscribe(() => {
       if (this.appliedPromo()) {
         this.recalculateDiscount();
       }
