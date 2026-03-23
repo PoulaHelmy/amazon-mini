@@ -1,12 +1,16 @@
 import { Injectable, computed, signal } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { CartItem } from '../models/cart.model';
 import { Product } from '../models/product.model';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
   private readonly _items = signal<CartItem[]>([]);
+  private readonly _items$ = new BehaviorSubject<CartItem[]>([]);
 
   readonly items = this._items.asReadonly();
+  /** Observable stream of cart items — useful for reactive subscriptions */
+  readonly items$ = this._items$.asObservable();
 
   readonly itemCount = computed(() =>
     this._items().reduce((sum, item) => sum + item.quantity, 0)
@@ -19,16 +23,15 @@ export class CartService {
   addToCart(product: Product): void {
     const current = this._items();
     const existing = current.find(item => item.productId === product.id);
+    let next: CartItem[];
     if (existing) {
-      this._items.set(
-        current.map(item =>
-          item.productId === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
+      next = current.map(item =>
+        item.productId === product.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
       );
     } else {
-      this._items.set([
+      next = [
         ...current,
         {
           productId: product.id,
@@ -39,8 +42,10 @@ export class CartService {
           image: product.image,
           quantity: 1,
         },
-      ]);
+      ];
     }
+    this._items.set(next);
+    this._items$.next(next);
   }
 
   removeFromCart(productId: number): void {

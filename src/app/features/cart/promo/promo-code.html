@@ -1,0 +1,46 @@
+<div class="promo-code">
+  @if (!appliedPromo()) {
+    <div class="promo-code__input-row">
+      <input
+        type="text"
+        class="promo-code__input"
+        [(ngModel)]="promoInput"
+        placeholder="Enter promo code"
+        [disabled]="isLoading()"
+      />
+      <button
+        class="promo-code__apply-btn"
+        (click)="applyPromo()"
+        [disabled]="isLoading() || !promoInput">
+        @if (isLoading()) {
+          <i class="pi pi-spin pi-spinner"></i>
+        } @else {
+          Apply
+        }
+      </button>
+    </div>
+
+    @if (errorMessage()) {
+      <p class="promo-code__error">{{ errorMessage() }}</p>
+    }
+
+    <!-- BUG 12: track $index used instead of track item.Code — loses identity on reorder -->
+    <ul class="promo-code__suggestions">
+      @for (suggestion of ['SAVE10', 'FLAT20']; track $index) {
+        <li (click)="promoInput = suggestion">{{ suggestion }}</li>
+      }
+    </ul>
+  } @else {
+    <div class="promo-code__applied">
+      <span class="promo-code__applied-code">
+        <i class="pi pi-check-circle"></i>
+        <!-- BUG 13: Directly accessing PascalCase field in template -->
+        {{ appliedPromo()!.Code }} applied!
+      </span>
+      <span class="promo-code__discount">-{{ discount() | number: '1.2-2' }}</span>
+      <button class="promo-code__remove-btn" (click)="removePromo()">
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+  }
+</div>
