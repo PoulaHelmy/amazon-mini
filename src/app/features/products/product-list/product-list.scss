@@ -1,0 +1,117 @@
+.product-list-page {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  min-height: calc(100vh - 60px);
+}
+
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  &__title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  &__categories {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__cat-btn {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.15s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    &.active {
+      background: #fff3cd;
+      color: #c45500;
+      font-weight: 600;
+    }
+
+    i {
+      font-size: 0.9rem;
+      color: #ff9900;
+    }
+  }
+
+  &__count {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+  }
+}
+
+.products-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.products-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+
+  &__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  &__count {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+}
+
+.skeleton-card {
+  height: 320px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius);
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+// BUG (Task 3): text-align: left won't flip to right in RTL
+// Should use text-align: start (logical property)
+:host-context([dir='rtl']) {
+  .sidebar__cat-btn {
+    text-align: right;
+  }
+
+  .sidebar__count {
+    margin-left: 0;
+    margin-right: auto;
+  }
+}

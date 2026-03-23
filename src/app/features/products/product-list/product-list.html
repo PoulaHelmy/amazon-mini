@@ -1,0 +1,56 @@
+<div class="product-list-page">
+  <aside class="sidebar">
+    <h3 class="sidebar__title">{{ 'SEARCH.FILTERS' | translate }}</h3>
+    <ul class="sidebar__categories">
+      <li>
+        <button
+          class="sidebar__cat-btn"
+          [class.active]="!selectedCategory()"
+          (click)="selectCategory(null)">
+          All Categories
+        </button>
+      </li>
+      @for (cat of categories(); track cat.id) {
+        <li>
+          <button
+            class="sidebar__cat-btn"
+            [class.active]="selectedCategory() === cat.id"
+            (click)="selectCategory(cat.id)">
+            <i [class]="cat.icon"></i>
+            {{ currentLang === 'ar' ? cat.nameAr : cat.name }}
+            <span class="sidebar__count">{{ cat.productCount }}</span>
+          </button>
+        </li>
+      }
+    </ul>
+  </aside>
+
+  <main class="products-main">
+    <div class="products-header">
+      <h1 class="products-header__title">{{ 'NAV.PRODUCTS' | translate }}</h1>
+      <span class="products-header__count">
+        {{ filteredProducts().length }} {{ 'SEARCH.RESULTS_COUNT' | translate : { count: '' } }}
+      </span>
+    </div>
+
+    @if (loading()) {
+      <div class="grid-products">
+        @for (i of [1,2,3,4,5,6,7,8,9,10,11,12]; track i) {
+          <div class="skeleton-card"></div>
+        }
+      </div>
+    } @else if (filteredProducts().length === 0) {
+      <div class="empty-state">
+        <i class="pi pi-inbox"></i>
+        <h3>No products found</h3>
+        <p>Try selecting a different category</p>
+      </div>
+    } @else {
+      <div class="grid-products">
+        @for (product of filteredProducts(); track product.id) {
+          <app-product-card [product]="product" (addToCart)="addToCart($event)" />
+        }
+      </div>
+    }
+  </main>
+</div>

@@ -1,0 +1,9 @@
+{
+  "country": "us",
+  "providers": [
+    { "id": "visa", "name": "Visa", "icon": "pi pi-credit-card", "enabled": true },
+    { "id": "mastercard", "name": "Mastercard", "icon": "pi pi-credit-card", "enabled": true },
+    { "id": "paypal", "name": "PayPal", "icon": "pi pi-paypal", "enabled": true },
+    { "id": "apple_pay", "name": "Apple Pay", "icon": "pi pi-apple", "enabled": true }
+  ]
+}

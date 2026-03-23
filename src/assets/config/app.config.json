@@ -1,7 +1,7 @@
 {
-  "country": "EG",
-  "currency": "EGP",
-  "locale": "ar-EG",
-  "dir": "rtl",
-  "lang": "ar"
+  "lang": "en",
+  "dir": "ltr",
+  "currency": "USD",
+  "country": "us",
+  "apiBaseUrl": "https://api.shopmini.dev"
 }

@@ -1,0 +1,85 @@
+<div class="cart-page container">
+  <h1 class="cart-page__title">{{ 'CART.TITLE' | translate }}</h1>
+
+  @if (itemCount() === 0) {
+    <div class="empty-state">
+      <i class="pi pi-shopping-cart"></i>
+      <h3>{{ 'CART.EMPTY' | translate }}</h3>
+      <p>{{ 'CART.EMPTY_SUBTITLE' | translate }}</p>
+      <a routerLink="/products" class="btn-primary">
+        {{ 'CART.START_SHOPPING' | translate }}
+      </a>
+    </div>
+  } @else {
+    <div class="cart-layout">
+      <div class="cart-items">
+        @for (item of items(); track item.productId) {
+          <div class="cart-item">
+            <img [src]="item.image" [alt]="item.name" class="cart-item__image" />
+            <div class="cart-item__info">
+              <h4 class="cart-item__name">{{ item.name }}</h4>
+              @if (config(); as cfg) {
+                <p class="cart-item__price">{{ item.price | currencyFormat: cfg }}</p>
+              }
+            </div>
+            <div class="cart-item__qty">
+              <button class="qty-btn" (click)="updateQuantity(item.productId, -1)">-</button>
+              <span class="qty-value">{{ item.quantity }}</span>
+              <button class="qty-btn" (click)="updateQuantity(item.productId, 1)">+</button>
+            </div>
+            <button class="cart-item__remove" (click)="removeItem(item.productId)" [title]="'CART.REMOVE' | translate">
+              <i class="pi pi-trash"></i>
+            </button>
+          </div>
+        }
+      </div>
+
+      <aside class="cart-summary">
+        <div class="cart-summary__card">
+          <h3 class="cart-summary__title">Order Summary</h3>
+
+          @if (config(); as cfg) {
+            <div class="cart-summary__row">
+              <span>{{ 'CART.SUBTOTAL' | translate }}</span>
+              <span>{{ total() | currencyFormat: cfg }}</span>
+            </div>
+            <div class="cart-summary__row">
+              <span>{{ 'CART.SHIPPING' | translate }}</span>
+              <span>{{ shippingCost() === 0 ? ('CART.FREE_SHIPPING' | translate) : (shippingCost() | currencyFormat: cfg) }}</span>
+            </div>
+            <div class="cart-summary__row">
+              <span>{{ 'CART.TAX' | translate }}</span>
+              <span>{{ tax() | currencyFormat: cfg }}</span>
+            </div>
+            <div class="cart-summary__row cart-summary__row--total">
+              <span>{{ 'CART.TOTAL' | translate }}</span>
+              <span>{{ grandTotal() | currencyFormat: cfg }}</span>
+            </div>
+          }
+
+          <button class="cart-summary__checkout btn-primary">
+            {{ 'CART.CHECKOUT' | translate }}
+          </button>
+
+          <a routerLink="/products" class="cart-summary__continue">
+            {{ 'CART.CONTINUE_SHOPPING' | translate }}
+          </a>
+        </div>
+
+        <div class="payment-methods">
+          <h4 class="payment-methods__title">{{ 'CART.PAYMENT_METHODS' | translate }}</h4>
+          <div class="payment-methods__list">
+            @for (provider of paymentProviders(); track provider.id) {
+              @if (provider.enabled) {
+                <div class="payment-badge">
+                  <i [class]="provider.icon"></i>
+                  <span>{{ provider.name }}</span>
+                </div>
+              }
+            }
+          </div>
+        </div>
+      </aside>
+    </div>
+  }
+</div>

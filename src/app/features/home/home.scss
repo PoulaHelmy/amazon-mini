@@ -1,0 +1,137 @@
+.hero {
+  background: linear-gradient(135deg, #131921 0%, #232f3e 50%, #37475a 100%);
+  color: white;
+  padding: 5rem 1rem;
+  text-align: center;
+
+  &__content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #ff9900;
+
+    @media (max-width: 768px) {
+      font-size: 1.75rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+  }
+
+  &__cta {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    border-radius: 24px;
+    text-decoration: none;
+  }
+}
+
+.home-content {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.categories-section {
+  margin-bottom: 2.5rem;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.category-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: var(--text-primary);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    color: #c45500;
+  }
+
+  &__icon {
+    font-size: 1.75rem;
+    color: #ff9900;
+  }
+
+  &__name {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  &__count {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+  }
+}
+
+.featured-section {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+
+    .section-title {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.view-all-link {
+  color: #007185;
+  font-size: 0.875rem;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.loading-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.skeleton-card {
+  height: 320px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius);
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

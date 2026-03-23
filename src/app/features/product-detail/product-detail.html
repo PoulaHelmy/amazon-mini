@@ -1,0 +1,78 @@
+<div class="product-detail container">
+  <nav class="breadcrumb">
+    <a routerLink="/">{{ 'PRODUCT_DETAIL.BREADCRUMB_HOME' | translate }}</a>
+    <span>/</span>
+    <a routerLink="/products">{{ 'PRODUCT_DETAIL.BREADCRUMB_PRODUCTS' | translate }}</a>
+    @if (product()) {
+      <span>/</span>
+      <span>{{ currentLang === 'ar' ? product()!.nameAr : product()!.name }}</span>
+    }
+  </nav>
+
+  @if (loading()) {
+    <div class="detail-skeleton">
+      <div class="skeleton-image"></div>
+      <div class="skeleton-info">
+        <div class="skeleton-line"></div>
+        <div class="skeleton-line short"></div>
+        <div class="skeleton-line"></div>
+      </div>
+    </div>
+  } @else if (notFound()) {
+    <div class="empty-state">
+      <i class="pi pi-exclamation-circle"></i>
+      <h3>Product not found</h3>
+      <a routerLink="/products" class="btn-primary">{{ 'PRODUCT_DETAIL.BACK' | translate }}</a>
+    </div>
+  } @else if (product(); as p) {
+    <div class="detail-layout">
+      <div class="detail-image">
+        <img [src]="p.image" [alt]="currentLang === 'ar' ? p.nameAr : p.name" />
+      </div>
+
+      <div class="detail-info">
+        <h1 class="detail-info__name">{{ currentLang === 'ar' ? p.nameAr : p.name }}</h1>
+
+        <div class="detail-info__rating">
+          @for (star of [1,2,3,4,5]; track star) {
+            <i class="pi" [class.pi-star-fill]="star <= p.rating" [class.pi-star]="star > p.rating"></i>
+          }
+          <span>({{ p.reviewCount }} reviews)</span>
+        </div>
+
+        <div class="detail-info__pricing">
+          @if (config(); as cfg) {
+            <span class="detail-info__price">{{ p.price | currencyFormat: cfg }}</span>
+            @if (p.originalPrice) {
+              <span class="detail-info__original">{{ p.originalPrice | currencyFormat: cfg }}</span>
+            }
+          }
+        </div>
+
+        <p class="detail-info__description">
+          {{ currentLang === 'ar' ? p.descriptionAr : p.description }}
+        </p>
+
+        <div class="detail-info__stock">
+          @if (p.inStock) {
+            <span class="in-stock"><i class="pi pi-check-circle"></i> {{ 'PRODUCT_DETAIL.IN_STOCK' | translate }}</span>
+          } @else {
+            <span class="out-of-stock"><i class="pi pi-times-circle"></i> {{ 'PRODUCT.OUT_OF_STOCK' | translate }}</span>
+          }
+        </div>
+
+        <div class="detail-info__perks">
+          <div class="perk"><i class="pi pi-truck"></i> {{ 'PRODUCT_DETAIL.FREE_DELIVERY' | translate }}</div>
+          <div class="perk"><i class="pi pi-refresh"></i> {{ 'PRODUCT_DETAIL.RETURN_POLICY' | translate }}</div>
+        </div>
+
+        <button
+          class="detail-info__add-btn btn-primary"
+          [disabled]="!p.inStock"
+          (click)="addToCart()">
+          {{ p.inStock ? ('PRODUCT.ADD_TO_CART' | translate) : ('PRODUCT.OUT_OF_STOCK' | translate) }}
+        </button>
+      </div>
+    </div>
+  }
+</div>

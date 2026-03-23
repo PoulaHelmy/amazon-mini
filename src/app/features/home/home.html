@@ -1,0 +1,47 @@
+<section class="hero">
+  <div class="hero__content">
+    <h1 class="hero__title">{{ 'HOME.HERO_TITLE' | translate }}</h1>
+    <p class="hero__subtitle">{{ 'HOME.HERO_SUBTITLE' | translate }}</p>
+    <a routerLink="/products" class="btn-primary hero__cta">
+      {{ 'HOME.SHOP_NOW' | translate }}
+    </a>
+  </div>
+</section>
+
+<div class="container home-content">
+  <section class="categories-section">
+    <h2 class="section-title">{{ 'HOME.CATEGORIES_TITLE' | translate }}</h2>
+    <div class="categories-grid">
+      @for (cat of categories(); track cat.id) {
+        <a [routerLink]="['/products']" [queryParams]="{ category: cat.id }" class="category-card">
+          <i [class]="cat.icon" class="category-card__icon"></i>
+          <span class="category-card__name">
+            {{ currentLang === 'ar' ? cat.nameAr : cat.name }}
+          </span>
+          <span class="category-card__count">{{ cat.productCount }}</span>
+        </a>
+      }
+    </div>
+  </section>
+
+  <section class="featured-section">
+    <div class="featured-section__header">
+      <h2 class="section-title">{{ 'HOME.FEATURED_TITLE' | translate }}</h2>
+      <a routerLink="/products" class="view-all-link">{{ 'HOME.VIEW_ALL' | translate }}</a>
+    </div>
+
+    @if (loading()) {
+      <div class="loading-grid">
+        @for (i of [1,2,3,4,5,6,7,8]; track i) {
+          <div class="skeleton-card"></div>
+        }
+      </div>
+    } @else {
+      <div class="grid-products">
+        @for (product of featuredProducts(); track product.id) {
+          <app-product-card [product]="product" (addToCart)="addToCart($event)" />
+        }
+      </div>
+    }
+  </section>
+</div>

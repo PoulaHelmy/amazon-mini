@@ -1,0 +1,103 @@
+.search-page {
+  padding: 1.5rem 1rem;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  margin-bottom: 1.25rem;
+  color: var(--text-secondary);
+
+  a {
+    color: #007185;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__sep {
+    color: var(--border);
+  }
+}
+
+.search-bar {
+  position: relative;
+  margin-bottom: 1.25rem;
+
+  &__icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
+    border: 2px solid var(--border);
+    border-radius: 24px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #ff9900;
+    }
+  }
+}
+
+.search-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  &__count {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  &__sort {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+
+    label {
+      color: var(--text-secondary);
+    }
+
+    select {
+      padding: 0.3rem 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      outline: none;
+
+      &:focus {
+        border-color: #ff9900;
+      }
+    }
+  }
+}
+
+// BUG (Task 3): margin-left on icon should be margin-inline-start for RTL
+:host-context([dir='rtl']) {
+  .search-bar__icon {
+    left: auto;
+    right: 1rem;
+  }
+
+  .search-bar__input {
+    padding-left: 1rem;
+    padding-right: 2.75rem;
+  }
+}

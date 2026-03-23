@@ -1,0 +1,10 @@
+{
+  "country": "eg",
+  "providers": [
+    { "id": "visa", "name": "Visa", "icon": "pi pi-credit-card", "enabled": true },
+    { "id": "mastercard", "name": "Mastercard", "icon": "pi pi-credit-card", "enabled": true },
+    { "id": "cash_on_delivery", "name": "Cash on Delivery", "icon": "pi pi-money-bill", "enabled": true },
+    { "id": "vodafone_cash", "name": "Vodafone Cash", "icon": "pi pi-mobile", "enabled": true },
+    { "id": "fawry", "name": "Fawry", "icon": "pi pi-wallet", "enabled": true }
+  ]
+}

@@ -1,0 +1,55 @@
+<div class="search-page container">
+  <!-- BUG (Task 3): Breadcrumb is static, not driven by route/translation -->
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <a routerLink="/">Home</a>
+    <span class="breadcrumb__sep">/</span>
+    <span>Search</span>
+  </nav>
+
+  <div class="search-bar">
+    <i class="pi pi-search search-bar__icon"></i>
+    <input
+      type="search"
+      class="search-bar__input"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearch()"
+      [placeholder]="'NAV.SEARCH_PLACEHOLDER' | translate"
+      autofocus
+    />
+  </div>
+
+  <div class="search-toolbar">
+    <p class="search-toolbar__count">
+      @if (searchTerm) {
+        {{ 'SEARCH.RESULTS_FOR' | translate : { query: searchTerm } }}
+        ({{ results().length }})
+      } @else {
+        {{ results().length }} {{ 'SEARCH.RESULTS_COUNT' | translate : { count: '' } }}
+      }
+    </p>
+
+    <div class="search-toolbar__sort">
+      <label>{{ 'SEARCH.SORT_BY' | translate }}:</label>
+      <select [value]="sortBy()" (change)="sortBy.set($any($event.target).value)">
+        <option value="relevance">{{ 'SEARCH.SORT_RELEVANCE' | translate }}</option>
+        <option value="price_asc">{{ 'SEARCH.SORT_PRICE_ASC' | translate }}</option>
+        <option value="price_desc">{{ 'SEARCH.SORT_PRICE_DESC' | translate }}</option>
+        <option value="rating">{{ 'SEARCH.SORT_RATING' | translate }}</option>
+      </select>
+    </div>
+  </div>
+
+  @if (results().length === 0 && searchTerm) {
+    <div class="empty-state">
+      <i class="pi pi-search"></i>
+      <h3>{{ 'SEARCH.NO_RESULTS' | translate }}</h3>
+      <p>{{ 'SEARCH.NO_RESULTS_SUBTITLE' | translate }}</p>
+    </div>
+  } @else {
+    <div class="grid-products">
+      @for (product of results(); track product.id) {
+        <app-product-card [product]="product" (addToCart)="addToCart($event)" />
+      }
+    </div>
+  }
+</div>

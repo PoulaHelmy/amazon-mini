@@ -1,0 +1,60 @@
+<div class="product-card" [class.product-card--out-of-stock]="isOutOfStock()">
+  <a [routerLink]="['/products', product().id]" class="product-card__image-link">
+    <img [src]="product().image" [alt]="displayName()" class="product-card__image" loading="lazy" />
+
+    @if (isOutOfStock()) {
+      <div class="product-card__overlay">
+        <span>{{ 'PRODUCT.OUT_OF_STOCK' | translate }}</span>
+      </div>
+    }
+
+    @if (isOnSale()) {
+      <span class="product-card__badge product-card__badge--sale">
+        {{ 'PRODUCT.DISCOUNT' | translate : { value: discount() } }}
+      </span>
+    } @else if (product().isNew) {
+      <span class="product-card__badge product-card__badge--new">
+        {{ 'PRODUCT.NEW' | translate }}
+      </span>
+    } @else if (product().isFeatured) {
+      <span class="product-card__badge product-card__badge--featured">
+        {{ 'PRODUCT.FEATURED' | translate }}
+      </span>
+    }
+  </a>
+
+  <div class="product-card__body">
+    <h3 class="product-card__name">
+      <a [routerLink]="['/products', product().id]">{{ displayName() }}</a>
+    </h3>
+
+    <div class="product-card__rating">
+      @for (star of [1,2,3,4,5]; track star) {
+        <i class="pi" [class.pi-star-fill]="star <= product().rating" [class.pi-star]="star > product().rating"></i>
+      }
+      <span class="product-card__review-count">({{ product().reviewCount }})</span>
+    </div>
+
+    <div class="product-card__pricing">
+      @if (config(); as cfg) {
+        <span class="product-card__price">{{ product().price | currencyFormat: cfg }}</span>
+        @if (isOnSale()) {
+          <span class="product-card__original-price">{{ product().originalPrice! | currencyFormat: cfg }}</span>
+        }
+      }
+    </div>
+
+    @if (product().inStock && product().stockCount && product().stockCount! <= 5) {
+      <p class="product-card__low-stock">
+        {{ 'PRODUCT_DETAIL.LOW_STOCK' | translate : { count: product().stockCount } }}
+      </p>
+    }
+
+    <button
+      class="product-card__add-btn"
+      [disabled]="isOutOfStock()"
+      (click)="onAddToCart()">
+      {{ isOutOfStock() ? ('PRODUCT.OUT_OF_STOCK' | translate) : ('PRODUCT.ADD_TO_CART' | translate) }}
+    </button>
+  </div>
+</div>

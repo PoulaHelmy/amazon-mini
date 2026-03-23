@@ -1,0 +1,117 @@
+.navbar {
+  background: #131921;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ff9900;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    i {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    gap: 1.5rem;
+    flex: 1;
+  }
+
+  &__link {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+
+    &:hover,
+    &.active {
+      color: #ff9900;
+      border-bottom-color: #ff9900;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+  }
+
+  &__icon-btn {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 1.1rem;
+    position: relative;
+    padding: 0.25rem;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #ff9900;
+    }
+  }
+
+  &__cart {
+    position: relative;
+  }
+
+  &__badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: #ff9900;
+    color: #131921;
+    font-size: 0.65rem;
+    font-weight: 700;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+  }
+
+  &__lang-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+
+    &:hover {
+      border-color: #ff9900;
+      color: #ff9900;
+    }
+  }
+}
+
+:host-context([dir='rtl']) {
+  .navbar__actions {
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
